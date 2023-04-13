@@ -11,7 +11,7 @@ reloadPage();
 function onInput(evt) {
   data = evt.elements;
   evt.elements = { email: email.value, message: message.value };
-  localStorage.setItem('feedback-form-state', JSON.stringify(evt.elements));
+  localStorage.setItem('feedback-form-state', JSON.stringify(data));
 }
 
 function reloadPage() {
