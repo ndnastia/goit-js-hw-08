@@ -9,8 +9,8 @@ const { email, message } = form.elements;
 reloadPage();
 
 function onInput(evt) {
-  data = evt.elements;
-  evt.elements = { email: email.value, message: message.value };
+  console.log(evt.target);
+  data[evt.target.name] = evt.target.value;
   localStorage.setItem('feedback-form-state', JSON.stringify(data));
 }
 
@@ -25,10 +25,12 @@ function onSubmit(evt) {
   evt.preventDefault();
   console.log({ email: email.value, message: message.value });
 
-  if (email.value === '' || message.value === '') {
-    localStorage.removeItem('feedback-form-state');
-  evt.currentTarget.reset();
-  data = {};
-  }
-  evt.currentTarget.reset();
+  if (email.value && message.value) {
+     localStorage.removeItem('feedback-form-state');
+     data = {};
+     evt.currentTarget.reset();   
+   } else {
+     alert("❗All fields must be filled❗");
+    }
+  
 }
